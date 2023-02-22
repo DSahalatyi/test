@@ -1,0 +1,33 @@
+TODO:
+move client.headers.update to conftest. create 2 more clients for is_staff and random tokens
+Remove messages from obvious asserts
+
+API:
+==================
+405 Response message grammar mistake
+{
+  "message": "Do not has permission" <<==
+}
+Fix: Do not have permission
+==================
+foodsection/create
+201
+"message": 'FoodSection has been create' <<==
+
+Fix: FoodSection has been created
+==================
+food-section/create
+response 409
+'message': 'Name name cannot be an empty field',
+Fix: Name cannot be an empty field
+==================
+food-section/update
+response 200
+'message': 'Food section update'
+Fix: add d
+==================
+
+Swagger:
+Register
+201 User has been create
+Fix: add d
