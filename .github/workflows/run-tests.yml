@@ -26,7 +26,6 @@ jobs:
         working-directory: ./server/food_shop_backend/src
         run: yarn start
 
-
 #  Run-pytest-tests:
 #    runs-on: windows-latest
 #    steps:
