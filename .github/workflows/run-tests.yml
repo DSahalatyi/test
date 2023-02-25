@@ -1,0 +1,45 @@
+
+
+name: Run Pytest
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  Run-yarn-server:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '19.4.0'
+      - name: Install yarn
+        run: npm install --global yarn
+      - working-directory: ./server/food_shop_backend/src
+      - run: yarn install
+      - name: Run web-site
+        run: yarn start
+
+#  Run-pytest-tests:
+#    runs-on: windows-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Install Python
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.11.1'
+#          cache: 'pip'
+#      - name: Install Python Dependency
+#        uses: py-actions/py-dependency-install@v4.0.0
+#      - name: Install pytest
+#        run: pip install pytest
+#      - name: Install pytest-html
+#        run: pip install pytest-html
+#      - name: Run tests
+#        run: |
+#          pytest --html=report.html --self-contained-html
+        
