@@ -19,9 +19,11 @@ jobs:
           node-version: '19.4.0'
       - name: Install yarn
         run: npm install --global yarn
-      - working-directory: ./server/food_shop_backend/src
-      - run: yarn install
+      - name: Install yarn dependency
+        working-directory: ./server/food_shop_backend/src
+        run: yarn install
       - name: Run web-site
+        working-directory: ./server/food_shop_backend/src
         run: yarn start
 
 #  Run-pytest-tests:
