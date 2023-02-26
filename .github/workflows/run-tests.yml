@@ -26,10 +26,10 @@ jobs:
           node-version: '19.4.0'
 
       - name: Install Yarn
-        working-directory: ./server/food_shop_backend/src
         uses: borales/actions-yarn@v4
         with:
           cmd: install
+          dir: ./server/food_shop_backend/src
 
       - name: Start Yarn server
         working-directory: ./server/food_shop_backend/src
