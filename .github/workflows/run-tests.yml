@@ -44,8 +44,8 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Install plugin
-        run: pip install pytest-github-actions-annotate-failures
+#      - name: Install plugin
+#        run: pip install pytest-github-actions-annotate-failures
 
       - name: Test with pytest
         run: |
