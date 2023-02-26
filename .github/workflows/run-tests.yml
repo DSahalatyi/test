@@ -44,8 +44,27 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Run tests
-        run: pytest --html=./reports/autoreport.html --self-contained-html
+      - name: Test with pytest
+        run: |
+          pytest --alluredir=allure-results --browser chrome_headless
 
-      - name: processes
-        run: pidof node
+      - name: Allure results
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: allure-results
+          allure_report: allure-report
+          gh_pages: gh-pages
+          allure_history: allure-history
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
+
+      - name: Clear processes
+        run: killall node
