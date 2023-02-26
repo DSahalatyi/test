@@ -36,3 +36,12 @@ jobs:
         with:
           cmd: start
           dir: ./server/food_shop_backend/src
+
+      - name: Install Python 3.11.1
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.1'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
