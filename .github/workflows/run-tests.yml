@@ -45,7 +45,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest --html=report.html --self-contained-html
+        run: pytest --html=./autoreport.html --self-contained-html
 
-      - name: Show processes
-        run: ps -aux
+      - name: processes
+        run: pidof 'node /usr/local/bin/yarn start'
