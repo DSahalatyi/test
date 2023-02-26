@@ -25,6 +25,16 @@ jobs:
         with:
           node-version: '19.4.0'
 
+#      - name: Create a service to run server
+#        run: |
+#          touch start_server.service
+#          echo '[Unit]' > start_server.service
+#          echo '\nDescription=Start Node.js server' > start_server.service
+#          echo '\n' > start_server.service
+#          echo '\n[Service] > start_server.service
+#          echo 'ExecStart=./server/food_shop_backend/src yarn start
+          
+
       - name: Install Yarn
         uses: borales/actions-yarn@v4
         with:
@@ -34,7 +44,7 @@ jobs:
       - name: Start Yarn server
         uses: borales/actions-yarn@v4
         with:
-          cmd: start
+          cmd: start &
           dir: ./server/food_shop_backend/src
 
       - name: Install Python 3.11.1
