@@ -29,7 +29,7 @@ jobs:
         working-directory: ./server/food_shop_backend/src
         uses: borales/actions-yarn@v4
         with:
-            cmd: install
+          cmd: install
 
       - name: Start Yarn server
         working-directory: ./server/food_shop_backend/src
