@@ -47,7 +47,7 @@ jobs:
       - name: Run tests
         working-directory: ./
         run: |
-          pytest --alluredir=allure-results --browser chrome_headless
+          pytest --alluredir=allure-results
       - name: Allure results
         uses: simple-elf/allure-report-action@master
         if: always()
