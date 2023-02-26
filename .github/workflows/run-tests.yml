@@ -42,10 +42,8 @@ jobs:
           dir: ./server/food_shop_backend/src
 
       - name: Start Yarn server
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: start &
-          dir: ./server/food_shop_backend/src
+        working-directory: ./server/food_shop_backend/src
+        run: nohup yarn start &
 
       - name: Install Python 3.11.1
         uses: actions/setup-python@v4
