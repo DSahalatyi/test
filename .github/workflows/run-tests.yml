@@ -46,7 +46,24 @@ jobs:
 
       - name: Run tests
         working-directory: ./
-        run: pytest --html=autoreport.html --self-contained-html
+        run: |
+          pytest --alluredir=allure-results --browser chrome_headless
+      - name: Allure results
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: allure-results
+          allure_report: allure-report
+          gh_pages: gh-pages
+          allure_history: allure-history
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
 
       - name: processes
-        run: pidof yarn start
+        run: pidof node
