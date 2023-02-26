@@ -45,7 +45,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run tests
-        working-directory: ./tests
+        working-directory: ./
         run: pytest --html=autoreport.html --self-contained-html
 
       - name: processes
