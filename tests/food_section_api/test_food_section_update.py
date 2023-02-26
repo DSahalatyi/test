@@ -10,7 +10,7 @@ def test_attempt_update_food_section_with_random_token(
 ):
     food_section_id = list(db_utility.foodsections.find({}))[0]["_id"]
     response = client_random_token.post(f"api/food-section/{food_section_id}/update", json=test_food_section_info)
-    assert response.status_code == 405
+    assert response.status_code == 400
     db_food_sections = list(db_utility.foodsections.find({}))
     assert db_food_sections[0]["name"] == random_food_section_info["name"]
     assert db_food_sections[0]["ordering_priority"] == random_food_section_info["ordering_priority"]
