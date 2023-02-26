@@ -1,6 +1,6 @@
 
 
-name: Run Pytest
+name: CI test
 
 on:
   push:
@@ -9,39 +9,31 @@ on:
     branches: [ develop ]
 
 jobs:
-  Run-yarn-server:
-    runs-on: windows-latest
+  build:
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Install Node.js
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.8.0
+        with:
+          mongodb-version: '6.0'
+
+      - name: Install Node.js 19.4.0
         uses: actions/setup-node@v3
         with:
           node-version: '19.4.0'
-      - name: Install yarn
-        run: npm install --global yarn
-      - name: Install yarn dependency
-        working-directory: ./server/food_shop_backend/src
-        run: yarn install
-      - name: Run web-site
-        working-directory: ./server/food_shop_backend/src
-        run: yarn start
 
-#  Run-pytest-tests:
-#    runs-on: windows-latest
-#    steps:
-#      - uses: actions/checkout@v3
-#      - name: Install Python
-#        uses: actions/setup-python@v4
-#        with:
-#          python-version: '3.11.1'
-#          cache: 'pip'
-#      - name: Install Python Dependency
-#        uses: py-actions/py-dependency-install@v4.0.0
-#      - name: Install pytest
-#        run: pip install pytest
-#      - name: Install pytest-html
-#        run: pip install pytest-html
-#      - name: Run tests
-#        run: |
-#          pytest --html=report.html --self-contained-html
-        
+      - name: Install Yarn
+        working-directory: ./server/food_shop_backend/src
+        uses: borales/actions-yarn@v4
+        with:
+            cmd: install
+
+      - name: Start Yarn server
+        working-directory: ./server/food_shop_backend/src
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: start

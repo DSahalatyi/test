@@ -1,5 +1,3 @@
-import json
-
 import pytest
 
 pytestmark = pytest.mark.update_food_section
